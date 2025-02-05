@@ -3,17 +3,17 @@ import { useState } from "react";
 
 const slides = [
   {
-    url: "https://source.unsplash.com/random/1600x900/?technology",
+    url: "https://source.unsplash.com/random/1600x900/?business,technology",
     title: "Welcome to Our Portfolio",
     description: "We create amazing digital experiences that inspire and innovate",
   },
   {
-    url: "https://source.unsplash.com/random/1600x900/?business",
+    url: "https://source.unsplash.com/random/1600x900/?office,computer",
     title: "Professional Services",
     description: "Delivering excellence in every project we undertake",
   },
   {
-    url: "https://source.unsplash.com/random/1600x900/?creative",
+    url: "https://source.unsplash.com/random/1600x900/?creative,design",
     title: "Creative Solutions",
     description: "Innovative approaches to modern challenges",
   },
