@@ -4,17 +4,17 @@ import { useState, useEffect } from "react";
 
 const slides = [
   {
-    url: "/tech-slider1.jpg",
+    url: "/slide1.jpg",
     title: "Welcome to Our Portfolio",
     description: "We create amazing digital experiences that inspire and innovate",
   },
   {
-    url: "/tech-slider2.jpg", 
+    url: "/slide2.jpg", 
     title: "Professional Services",
     description: "Delivering excellence in every project we undertake",
   },
   {
-    url: "/tech-slider3.jpg",
+    url: "/slide3.jpg",
     title: "Creative Solutions",
     description: "Innovative approaches to modern challenges",
   },
