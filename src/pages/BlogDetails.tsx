@@ -1,3 +1,4 @@
+
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
@@ -8,7 +9,7 @@ const BlogDetails = () => {
       <main className="container mx-auto px-4 py-8 flex-grow">
         <article className="max-w-3xl mx-auto">
           <img
-            src="https://source.unsplash.com/random/1200x600/?blog"
+            src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1200&h=600&fit=crop"
             alt="Blog Cover"
             className="w-full h-[400px] object-cover rounded-lg mb-8"
           />

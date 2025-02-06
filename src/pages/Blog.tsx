@@ -7,12 +7,20 @@ const blogs = [
     id: 1,
     title: "Getting Started with Web Development",
     excerpt: "Learn the basics of web development and start your journey...",
-    image: "https://source.unsplash.com/random/800x600?coding",
+    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=600&fit=crop",
     date: "2024-03-15",
     author: "John Doe",
     category: "Development",
   },
-  // ... Add more blog posts here
+  {
+    id: 2,
+    title: "The Future of AI in Business",
+    excerpt: "Discover how AI is transforming the business landscape...",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop",
+    date: "2024-03-14",
+    author: "Jane Smith",
+    category: "Technology",
+  },
 ];
 
 const Blog = () => {
