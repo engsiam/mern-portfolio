@@ -4,19 +4,19 @@ import { useState, useEffect } from "react";
 
 const slides = [
   {
-    url: "/slide1.jpg",
+    url: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
     title: "Welcome to Our Portfolio",
     description: "We create amazing digital experiences that inspire and innovate",
   },
   {
-    url: "/slide2.jpg", 
-    title: "Professional Services",
-    description: "Delivering excellence in every project we undertake",
+    url: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
+    title: "Professional Development",
+    description: "Expert software solutions and modern web applications",
   },
   {
-    url: "/slide3.jpg",
-    title: "Creative Solutions",
-    description: "Innovative approaches to modern challenges",
+    url: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7",
+    title: "Creative Design",
+    description: "Innovative design approaches for the digital age",
   },
 ];
 
