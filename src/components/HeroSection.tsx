@@ -1,19 +1,20 @@
+
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const slides = [
   {
-    url: "https://source.unsplash.com/random/1600x900/?business,technology",
+    url: "/tech-slider1.jpg",
     title: "Welcome to Our Portfolio",
     description: "We create amazing digital experiences that inspire and innovate",
   },
   {
-    url: "https://source.unsplash.com/random/1600x900/?office,computer",
+    url: "/tech-slider2.jpg", 
     title: "Professional Services",
     description: "Delivering excellence in every project we undertake",
   },
   {
-    url: "https://source.unsplash.com/random/1600x900/?creative,design",
+    url: "/tech-slider3.jpg",
     title: "Creative Solutions",
     description: "Innovative approaches to modern challenges",
   },
@@ -21,6 +22,16 @@ const slides = [
 
 const HeroSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prevIndex) => 
+        prevIndex === slides.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(timer);
+  }, []);
 
   const prevSlide = () => {
     const isFirstSlide = currentIndex === 0;
