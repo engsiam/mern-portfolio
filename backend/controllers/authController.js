@@ -1,4 +1,4 @@
-const bcrypt = require("bcrypt");
+const bcryptjs = require("bcryptjs"); // Use bcryptjs instead of bcrypt
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const { JWT_SECRET } = process.env;
@@ -6,14 +6,13 @@ const { JWT_SECRET } = process.env;
 // Register a new user
 exports.register = async (req, res) => {
   const { email, password } = req.body;
-
   try {
     // Check if user already exists
     let user = await User.findOne({ email });
     if (user) return res.status(400).json({ message: "User already exists" });
 
     // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcryptjs.hash(password, 10);
 
     // Create new user
     user = new User({ email, password: hashedPassword });
@@ -28,14 +27,13 @@ exports.register = async (req, res) => {
 // Login user
 exports.login = async (req, res) => {
   const { email, password } = req.body;
-
   try {
     // Check if user exists
     const user = await User.findOne({ email });
     if (!user) return res.status(400).json({ message: "Invalid credentials" });
 
     // Compare password
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcryptjs.compare(password, user.password);
     if (!isMatch)
       return res.status(400).json({ message: "Invalid credentials" });
 
