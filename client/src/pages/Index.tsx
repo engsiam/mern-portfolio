@@ -2,60 +2,32 @@ import { ArrowRight } from "lucide-react";
 import Footer from "../components/Footer";
 import HeroSection from "../components/HeroSection";
 import Navigation from "../components/Navigation";
+import axios from 'axios'
+import { useEffect, useState } from "react";
 
-// Temporary blog data until we implement dynamic content
-const tempBlogs = [
-  {
-    id: 1,
-    title: "Getting Started with Web Development",
-    excerpt: "Learn the basics of web development and start your journey...",
-    image:
-      "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=600&fit=crop",
-    date: "2024-03-15",
-  },
-  {
-    id: 2,
-    title: "The Future of AI in Business",
-    excerpt: "Discover how AI is transforming the business landscape...",
-    image:
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop",
-    date: "2024-03-14",
-  },
-  {
-    id: 3,
-    title: "Mobile App Development Trends",
-    excerpt: "Stay ahead of the curve with these mobile development trends...",
-    image:
-      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop",
-    date: "2024-03-13",
-  },
-  {
-    id: 4,
-    title: "UI/UX Design Principles",
-    excerpt: "Master the fundamentals of user interface design...",
-    image:
-      "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=600&fit=crop",
-    date: "2024-03-12",
-  },
-  {
-    id: 5,
-    title: "Cloud Computing Solutions",
-    excerpt: "Explore modern cloud infrastructure and services...",
-    image:
-      "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=600&fit=crop",
-    date: "2024-03-11",
-  },
-  {
-    id: 6,
-    title: "Cybersecurity Best Practices",
-    excerpt: "Learn how to protect your digital assets effectively...",
-    image:
-      "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=600&fit=crop",
-    date: "2024-03-10",
-  },
-];
+const formatDateTime = (dateTime: string) => {
+  const date = new Date(dateTime);
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+  const year = date.getFullYear();
+  return `${day}-${month}-${year}`;
+}
 
 const Index = () => {
+  const [blogs, setBlogs] = useState<Blog[]>([]);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/blogs');
+        setBlogs(response.data);
+      } catch (error) {
+        console.error('Error fetching blogs:', error);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
@@ -77,9 +49,9 @@ const Index = () => {
             </a>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {tempBlogs.map((blog) => (
+            {blogs.map((blog) => (
               <div
-                key={blog.id}
+                key={blog._id}
                 className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
               >
                 <img
@@ -89,11 +61,11 @@ const Index = () => {
                 />
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-2">{blog.title}</h3>
-                  <p className="text-gray-600 mb-4">{blog.excerpt}</p>
+                  <p className="text-gray-600 mb-4">{blog.content}</p>
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-500 text-sm">{blog.date}</span>
+                    <span className="text-gray-500 text-sm font-bold">{formatDateTime(blog.createdAt)} {/* Format the date */}</span>
                     <a
-                      href={`/blog/${blog.id}`}
+                      href={`/blog/${blog._id}`}
                       className="text-primary hover:text-primary/80 font-semibold"
                     >
                       Read More
