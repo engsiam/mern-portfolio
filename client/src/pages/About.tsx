@@ -4,29 +4,7 @@ import Footer from "@/components/Footer";
 import { useEffect, useState } from "react";
 import axios from 'axios'
 
-const teamMembers = [
-  {
-    id: 1,
-    name: "John Doe",
-    role: "CEO & Founder",
-    image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952",
-    bio: "With over 15 years of experience in technology and business development.",
-  },
-  {
-    id: 2,
-    name: "Jane Smith",
-    role: "Lead Developer",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
-    bio: "Expert in full-stack development and cloud architecture.",
-  },
-  {
-    id: 3,
-    name: "Mike Johnson",
-    role: "Design Lead",
-    image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04",
-    bio: "Creative professional with a passion for user-centered design.",
-  },
-];
+
 
 const About = () => {
   const [teams, setTeams] = useState<Team[]>([]);

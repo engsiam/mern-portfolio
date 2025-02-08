@@ -1,33 +1,25 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { useEffect, useState } from "react";
+import axios from 'axios'
 
-// Temporary services data until we implement dynamic content
-const services = [
-  {
-    id: 1,
-    title: "Web Development",
-    description: "Custom web applications built with modern technologies.",
-    icon: "🌐",
-    features: ["Responsive Design", "SEO Optimization", "Performance Tuning"],
-  },
-  {
-    id: 2,
-    title: "Mobile Development",
-    description: "Native and cross-platform mobile applications.",
-    icon: "📱",
-    features: ["iOS & Android", "User-friendly UI", "Offline Support"],
-  },
-  {
-    id: 3,
-    title: "UI/UX Design",
-    description: "Beautiful and functional user interfaces.",
-    icon: "🎨",
-    features: ["User Research", "Wireframing", "Prototyping"],
-  },
-  // Add more services as needed
-];
+
 
 const Services = () => {
+  const [services, setServices] = useState<Service[]>([]);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/services');
+        setServices(response.data);
+      } catch (error) {
+        console.error('Error fetching blogs:', error);
+      }
+    };
+
+    fetchServices();
+  },[]);
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
@@ -39,7 +31,7 @@ const Services = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service) => (
               <div
-                key={service.id}
+                key={service._id}
                 className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow"
               >
                 <div className="text-4xl mb-4">{service.icon}</div>
