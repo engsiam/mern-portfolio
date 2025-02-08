@@ -12,10 +12,10 @@ exports.getAllServices = async (req, res) => {
 
 // Create a new service
 exports.createService = async (req, res) => {
-  const { title, description, icon } = req.body;
+  const { title, description, icon,features } = req.body;
 
   try {
-    const newService = new Service({ title, description, icon });
+    const newService = new Service({ title, description, icon,features });
     await newService.save();
     res.status(201).json(newService);
   } catch (error) {
@@ -26,21 +26,19 @@ exports.createService = async (req, res) => {
 // Update a service
 exports.updateService = async (req, res) => {
   const { id } = req.params;
-  const { title, description, icon } = req.body;
-
+  const { title, description, icon, features } = req.body;
   try {
     const updatedService = await Service.findByIdAndUpdate(
       id,
-      { title, description, icon },
+      { title, description, icon, features },
       { new: true }
     );
-
     if (!updatedService) {
       return res.status(404).json({ message: "Service not found" });
     }
-
     res.json(updatedService);
   } catch (error) {
+    console.error("Error updating service:", error); // Log the error
     res.status(500).json({ message: "Server error" });
   }
 };

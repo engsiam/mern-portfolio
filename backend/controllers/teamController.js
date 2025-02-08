@@ -12,10 +12,10 @@ exports.getAllTeamMembers = async (req, res) => {
 
 // Create a new team member
 exports.createTeamMember = async (req, res) => {
-  const { name, designation, image } = req.body;
+  const { name, designation, image,content } = req.body;
 
   try {
-    const newTeamMember = new Team({ name, designation, image });
+    const newTeamMember = new Team({ name, designation, image,content });
     await newTeamMember.save();
     res.status(201).json(newTeamMember);
   } catch (error) {
@@ -26,12 +26,12 @@ exports.createTeamMember = async (req, res) => {
 // Update a team member
 exports.updateTeamMember = async (req, res) => {
   const { id } = req.params;
-  const { name, designation, image } = req.body;
+  const { name, designation, image,content } = req.body;
 
   try {
     const updatedTeamMember = await Team.findByIdAndUpdate(
       id,
-      { name, designation, image },
+      { name, designation, image,content },
       { new: true }
     );
 
