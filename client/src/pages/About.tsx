@@ -1,6 +1,8 @@
 
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { useEffect, useState } from "react";
+import axios from 'axios'
 
 const teamMembers = [
   {
@@ -27,6 +29,20 @@ const teamMembers = [
 ];
 
 const About = () => {
+  const [teams, setTeams] = useState<Team[]>([]);
+
+  useEffect(() => {
+    const fetchTeams = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/team');
+        setTeams(response.data);
+      } catch (error) {
+        console.error('Error fetching blogs:', error);
+      }
+    };
+
+    fetchTeams();
+  }, []);
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
@@ -64,20 +80,20 @@ const About = () => {
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Our Team</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {teamMembers.map((member) => (
+            {teams.map((team) => (
               <div
-                key={member.id}
+                key={team._id}
                 className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow animate-fade-in"
               >
                 <img
-                  src={member.image}
-                  alt={member.name}
+                  src={team.image}
+                  alt={team.name}
                   className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
                 />
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
-                  <p className="text-primary mb-3">{member.role}</p>
-                  <p className="text-gray-600">{member.bio}</p>
+                  <h3 className="text-xl font-semibold mb-1">{team.name}</h3>
+                  <p className="text-primary mb-3">{team.designation}</p>
+                  <p className="text-gray-600">{team.content}</p>
                 </div>
               </div>
             ))}
