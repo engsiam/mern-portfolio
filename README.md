@@ -2,7 +2,7 @@
 ## Live Links
 
 - Frontend: [Netlify Link](https://dulcet-piroshki-495d9a.netlify.app)
-- Backend: [Vercel Link](https://your-vercel-link.com)
+
 
 ## Dashboard Login
 
