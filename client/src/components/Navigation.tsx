@@ -1,11 +1,11 @@
-
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate(); // Add useNavigate to redirect after logout
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -15,6 +15,17 @@ const Navigation = () => {
     { name: "Contact", path: "/contact" },
     { name: "Dashboard", path: "/dashboard" },
   ];
+
+  // Check if the user is authenticated
+  const token = localStorage.getItem("token");
+
+  // Logout function
+  const handleLogout = () => {
+    // Remove token from localStorage
+    localStorage.removeItem("token");
+    // Redirect to login page after logout
+    navigate("/login");
+  };
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -41,6 +52,15 @@ const Navigation = () => {
                 {item.name}
               </Link>
             ))}
+            {/* Show Logout button if the user is logged in */}
+            {token && (
+              <button
+                onClick={handleLogout}
+                className="text-gray-600 hover:text-primary transition-colors duration-200"
+              >
+                Logout
+              </button>
+            )}
           </div>
 
           {/* Mobile Navigation Button */}
@@ -69,6 +89,16 @@ const Navigation = () => {
                 {item.name}
               </Link>
             ))}
+            {/* Show Logout button if the user is logged in */}
+            {token && (
+              <button
+                onClick={handleLogout}
+                className="block py-2 text-gray-600 hover:text-primary"
+                onClick={() => setIsOpen(false)}
+              >
+                Logout
+              </button>
+            )}
           </div>
         )}
       </div>
