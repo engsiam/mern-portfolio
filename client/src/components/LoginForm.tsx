@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import axios from "axios";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate to redirect
 import Footer from "./Footer";
 import Navigation from "./Navigation";
@@ -12,11 +12,14 @@ const LoginForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/login", { email, password });
-      
+      const response = await axios.post(
+        "https://mern-portfolio-r2ov.vercel.app0/api/auth/login",
+        { email, password }
+      );
+
       // Store the token in local storage
       localStorage.setItem("token", response.data.token);
-      
+
       // Log successful login and redirect to dashboard
       console.log("Login successful. Token:", response.data.token);
       navigate("/dashboard"); // Navigate to dashboard after successful login
@@ -31,10 +34,15 @@ const LoginForm: React.FC = () => {
       <Navigation />
       <div className="flex items-center justify-center w-full h-full py-16 px-4">
         <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
-          <h2 className="text-2xl font-semibold text-center text-gray-700 mb-6">Sign In</h2>
+          <h2 className="text-2xl font-semibold text-center text-gray-700 mb-6">
+            Sign In
+          </h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-600">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-600"
+              >
                 Email Address
               </label>
               <input
@@ -48,7 +56,10 @@ const LoginForm: React.FC = () => {
               />
             </div>
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-600">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-600"
+              >
                 Password
               </label>
               <input

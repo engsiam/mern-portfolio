@@ -2,9 +2,9 @@
 ## Live Links
 
 - Frontend: [Netlify Link](https://dulcet-piroshki-495d9a.netlify.app)
-- Backend Team: [Vercel Link](https://mern-portfolio-r2ov-ah0md7pfg-engsiams-projects.vercel.app/api/team
-- Backend Services: [Vercel Link](https://mern-portfolio-r2ov-ah0md7pfg-engsiams-projects.vercel.app/api/services
-- Backend blogs: [Vercel Link](https://mern-portfolio-r2ov-ah0md7pfg-engsiams-projects.vercel.app/api/blogs
+- Backend Team: [Vercel Link] https://mern-portfolio-r2ov.vercel.app/api/blogs
+- Backend Services: [Vercel Link] https://mern-portfolio-r2ov.vercel.app/api/blogs
+- Backend blogs: [Vercel Link] https://mern-portfolio-r2ov.vercel.app/api/blogs
 
 ## Dashboard Login
 

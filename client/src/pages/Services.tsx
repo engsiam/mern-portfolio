@@ -1,9 +1,7 @@
-import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import Navigation from "@/components/Navigation";
+import axios from "axios";
 import { useEffect, useState } from "react";
-import axios from 'axios'
-
-
 
 const Services = () => {
   const [services, setServices] = useState<Service[]>([]);
@@ -11,19 +9,21 @@ const Services = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/services');
+        const response = await axios.get(
+          "https://mern-portfolio-r2ov.vercel.app/api/services"
+        );
         setServices(response.data);
       } catch (error) {
-        console.error('Error fetching blogs:', error);
+        console.error("Error fetching blogs:", error);
       }
     };
 
     fetchServices();
-  },[]);
+  }, []);
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
-      
+
       {/* Services Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">

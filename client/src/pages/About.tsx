@@ -1,10 +1,7 @@
-
-import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import Navigation from "@/components/Navigation";
+import axios from "axios";
 import { useEffect, useState } from "react";
-import axios from 'axios'
-
-
 
 const About = () => {
   const [teams, setTeams] = useState<Team[]>([]);
@@ -12,10 +9,12 @@ const About = () => {
   useEffect(() => {
     const fetchTeams = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/team');
+        const response = await axios.get(
+          "https://mern-portfolio-r2ov.vercel.app/api/team"
+        );
         setTeams(response.data);
       } catch (error) {
-        console.error('Error fetching blogs:', error);
+        console.error("Error fetching blogs:", error);
       }
     };
 
@@ -24,12 +23,14 @@ const About = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
-      
+
       {/* About Hero Section */}
       <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl font-bold mb-6 animate-fade-in">About Us</h1>
+            <h1 className="text-4xl font-bold mb-6 animate-fade-in">
+              About Us
+            </h1>
             <p className="text-lg text-gray-600 mb-8 animate-fade-in">
               We are a dedicated team of professionals committed to delivering
               excellence in digital solutions. Our mission is to help businesses

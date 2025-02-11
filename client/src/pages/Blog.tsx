@@ -1,16 +1,15 @@
-import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import axios from 'axios'
+import Navigation from "@/components/Navigation";
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 const formatDateTime = (dateTime: string) => {
   const date = new Date(dateTime);
-  const day = String(date.getDate()).padStart(2, '0');
-  const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
   const year = date.getFullYear();
   return `${day}-${month}-${year}`;
-}
-
+};
 
 const Blog = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -18,10 +17,12 @@ const Blog = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/blogs');
+        const response = await axios.get(
+          "https://mern-portfolio-r2ov.vercel.app/api/blogs"
+        );
         setBlogs(response.data);
       } catch (error) {
-        console.error('Error fetching blogs:', error);
+        console.error("Error fetching blogs:", error);
       }
     };
 
@@ -30,13 +31,13 @@ const Blog = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
-      
+
       {/* Blog Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl font-bold text-center mb-12">Our Blog</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogs.splice(0,3).map((blog) => (
+            {blogs.splice(0, 3).map((blog) => (
               <div
                 key={blog._id}
                 className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
@@ -49,7 +50,9 @@ const Blog = () => {
                 <div className="p-6">
                   <div className="flex justify-between items-center mb-2">
                     {/* <span className="text-sm text-primary">{blog.category}</span> */}
-                    <span className="text-sm text-gray-500">{formatDateTime(blog.createdAt)} {/* Format the date */}</span>
+                    <span className="text-sm text-gray-500">
+                      {formatDateTime(blog.createdAt)} {/* Format the date */}
+                    </span>
                   </div>
                   <h3 className="text-xl font-semibold mb-2">{blog.title}</h3>
                   <p className="text-gray-600 mb-4">{blog.content}</p>
