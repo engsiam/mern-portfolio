@@ -13,7 +13,7 @@ const LoginForm: React.FC = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://mern-portfolio-r2ov.vercel.app0/api/auth/login",
+        "https://mern-portfolio-r2ov.vercel.app/api/auth/login",
         { email, password }
       );
 
